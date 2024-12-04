@@ -8,7 +8,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, START_PIC, AUTO_DELETE_TIME, AUTO_DELETE_MSG, JOIN_REQUEST_ENABLE,FORCE_SUB_CHANNEL
+from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, START_PIC, AUTO_DELETE_TIME, AUTO_DELETE_MSG, JOIN_REQUEST_ENABLE, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2
 from helper_func import subscribed,decode, get_messages, delete_file
 from database.database import add_user, del_user, full_userbase, present_user
 
@@ -121,6 +121,8 @@ async def start_command(client: Client, message: Message):
                     InlineKeyboardButton("😊 About Me", callback_data = "about"),
                     InlineKeyboardButton("🔒 Close", callback_data = "close")
                 ]
+                [
+                    InlineKeyboardButton("⭐ Join Vip", url =f" https://t.me/noturamel")
             ]
         )
         if START_PIC:  # Check if START_PIC has a value
@@ -167,17 +169,23 @@ async def not_joined(client: Client, message: Message):
     if bool(JOIN_REQUEST_ENABLE):
         invite = await client.create_chat_invite_link(
             chat_id=FORCE_SUB_CHANNEL,
+            chat_id=FORCE_SUB_CHANNEL2,
             creates_join_request=True
         )
         ButtonUrl = invite.invite_link
+        ButtonUrl2 = invite.invite_link2
     else:
         ButtonUrl = client.invitelink
+        ButtonUrl2 = client.invitelink2
 
     buttons = [
         [
             InlineKeyboardButton(
                 "Join Channel",
-                url = ButtonUrl)
+                url = ButtonUrl),
+            InlineKeyboardButton(
+                "Join Channel",
+                url = ButtonUrl2)
         ]
     ]
 
@@ -185,7 +193,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = 'Coba Lagi',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
