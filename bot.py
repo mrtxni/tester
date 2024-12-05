@@ -49,7 +49,7 @@ class Bot(Client):
                 self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotzSupport for support")
                 sys.exit(),
 
-       if FORCE_SUB_CHANNEL2:
+       if FORCE_SUB_CHANNEL2
             try:
                 link = (await self.get_chat(FORCE_SUB_CHANNEL2)).invite_link
                 if not link:
