@@ -120,12 +120,10 @@ async def start_command(client: Client, message: Message):
                 [
                     InlineKeyboardButton("😊 About Me", callback_data = "about"),
                     InlineKeyboardButton("🔒 Close", callback_data = "close")
-                ]
-                )
-        (
+                ],
                 [
                     InlineKeyboardButton("⭐ Join Vip", url =f" https://t.me/noturamel")
-            ]
+            ],
         )
         if START_PIC:  # Check if START_PIC has a value
             await message.reply_photo(
